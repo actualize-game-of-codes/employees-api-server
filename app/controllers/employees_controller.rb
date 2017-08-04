@@ -32,4 +32,11 @@ class EmployeesController < ApplicationController
     )
     render "show.json.jbuilder"
   end
+
+  def destroy
+    @employee = Employee.find_by(id: params[:id])
+    @employee.destroy
+    # render json: {message: "Employee successfully destroyed!"}
+    render "destroy.json.jbuilder"
+  end
 end
