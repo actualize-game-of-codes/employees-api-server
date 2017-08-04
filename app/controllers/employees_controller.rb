@@ -21,4 +21,15 @@ class EmployeesController < ApplicationController
     render "show.json.jbuilder"
   end
 
+  def update
+    @employee = Employee.find_by(id: params[:id])
+    @employee.update(
+      first_name: params[:form_first_name] || @employee.first_name,
+      last_name: params[:form_last_name] || @employee.last_name,
+      birthdate: params[:form_birthdate] || @employee.birthdate,
+      email: params[:form_email] || @employee.email,
+      ssn: params[:form_ssn] || @employee.ssn
+    )
+    render "show.json.jbuilder"
+  end
 end
